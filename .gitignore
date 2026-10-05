@@ -53,5 +53,5 @@ quality_result.json
 *.tmp
 
 # Storage artifacts & cache
-storage/
+/storage/
 
