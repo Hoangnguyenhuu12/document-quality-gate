@@ -1,0 +1,45 @@
+# Configuration for AI Document Quality Gate
+thresholds:
+  # Blur threshold based on Laplacian / High-frequency energy
+  blur:
+    bad_max: 35.0         # Below 35 = severe blur
+    good_min: 100.0       # Above 100 = crisp text
+
+  # Contrast (standard deviation of luminance)
+  contrast:
+    bad_max: 20.0         # Below 20 = severely washed out
+    good_min: 45.0        # Above 45 = solid contrast
+
+  # Estimated DPI
+  resolution:
+    bad_max_dpi: 120      # Below 120 DPI = blurry/pixelated
+    good_min_dpi: 200     # Above 200 DPI = clear character boundaries
+
+  # Shadow & Illumination disparity (inter-quadrant luminance variance)
+  shadow:
+    bad_min_disparity: 40.0   # Above 40 = heavy corner/edge shadow
+    good_max_disparity: 18.0  # Below 18 = uniform lighting
+
+  # Skew tilt angle (in degrees)
+  skew:
+    bad_min_deg: 7.0          # Above 7.0 deg = severely tilted contract
+    good_max_deg: 1.5         # Below 1.5 deg = aligned text
+
+  # Glare & Overexposure percentage
+  glare:
+    bad_min_ratio: 10.0       # Above 10% = severe whiteout/glare
+    good_max_ratio: 2.0       # Below 2% = normal reflection
+
+decision:
+  weights:
+    blur: 0.30
+    contrast: 0.20
+    resolution: 0.20
+    shadow: 0.10
+    skew: 0.10
+    glare: 0.10
+
+  score_ranges:
+    good_min: 3.8
+    medium_min: 2.5
+
